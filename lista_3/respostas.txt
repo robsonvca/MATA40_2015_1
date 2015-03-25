@@ -1,0 +1,33 @@
+Lista ­ 3
+=========
+
+R1: Variável que armazena um endereço de memória. Na maioria dos casos, este endereço é a posição de outra variável.
+
+R2: b) int *prt;
+
+R3: a) *indica;
+
+R4: c) a variável apontada por pont
+
+R5: b) num == *pnum && d) pnum == &num
+
+R6: Sim, pois 'px', sem o operador unário '*' seria devolveria apenas o endereço de memória apontada por ela.
+
+R7: main(){int j, *pj; pj = &j; *pj = 3;}
+
+R8: *px = *px/5;
+
+R9: a) 1, b) -2, c) 3
+
+R10: &i, 7, 5, 15, 9
+
+R11: b) *p = &j, f) q = &p;
+
+R12: e) pti é igual a 10;
+
+R13: a) x =100; f) **pf =7.9; *ptx =20; h) ptx =&x; i)pp =&x; j) pf =&pta;
+
+R14: c) *pf =5.9; d) *ppi =&pi; e) *pf = 10; i) ppf =&pf; j) **ppi = 100;
+
+R15: a) x =10; b) *py =5.9; c) px =FFF0; d) &y =FFB4; e) *px =10; f) y =5.9; g) *ppx =FFA0; h) py =FFC6; i) &x =FFA0; j) py++ =FFC7; k) *px-- =9; l) **ppy =5.9; m) &ppy =FFA6; n) *&px =FFA0; o) **ppx++ =11; p) px++ =FFA1; q) &ppx =FFD4;
+
