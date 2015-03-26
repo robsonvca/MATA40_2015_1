@@ -1,0 +1,23 @@
+Lista 4
+========
+
+R1: c) terceiro elemento
+
+R2: b) Não, pois o laço repetirá 31 vezes, fazendo-o acessar a 31 posição do vetor no último laço, e esta posição não pertence ao vetor.
+
+R3: c) 6
+
+R4: 19, pois a última posicção amazenará o '\0'
+
+R5: e) pti é igual a 10
+
+R6: f) *pj = &j;
+
+R7: d) pti[1] é igual a 10
+
+R8: e) Nenhuma das opções anteriores
+
+R9: b) i =pti-ptj;
+
+R10: *((*matr)+1) é igual a 5
+
