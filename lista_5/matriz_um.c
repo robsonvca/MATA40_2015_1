@@ -1,13 +1,15 @@
 /*Implementação com vetores simples*/
-// #include "matriz.h"
 
-typedef struct{
-	int lin;
-	int col;
-	float *arr;
-	
-} Matriz;
+#include <stdlib.h>
+#include <stdio.h>
+#include "matriz.h"
 
+// struct matriz{
+// 	int lin;
+// 	int col;
+// 	float *arr;
+// };
+// typedef struct matriz Matriz;
 /*Cria uma matriz de dimensão m(linha) por n(coluna) e retorna endereço*/
 Matriz *create(const int lin, const int col){
 	Matriz *matriz;
@@ -44,4 +46,25 @@ int return_lines(Matriz *matriz){
 /*Devolve o número de colunas da matriz*/
 int return_columns(Matriz *matriz){
 	return matriz->col;
+};
+
+/*FUNÇÕES DE TESTE DA MATRIZ*/
+/*Preenche cada campo matriz com value+1*/
+void fills_matriz(Matriz *matriz, float value){
+	int i, j;
+
+	for(i =0; i <(matriz->lin); i++)
+		for(j =0; j <(matriz->col); j++)
+			assign(matriz, i, j, value++);
+};
+
+/*Imprime elementos da matriz*/
+void print_matriz(Matriz *matriz){
+	int i, j;
+
+	for(i =0; i <(matriz->lin); i++){
+		for(j =0; j <(matriz->col); j++)
+			printf("%5.1f ", acess(matriz, i, j));
+		printf("\n");
+	};
 };
