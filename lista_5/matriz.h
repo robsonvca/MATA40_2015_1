@@ -1,8 +1,5 @@
-typedef struct matriz{
-	int lin;
-	int col;
-	float *arr;
-} Matriz;
+/*DEfinição do tipo Matriz*/
+typedef struct matriz Matriz;
 
 /*Cria uma matriz de dimensão m(linha) por n(coluna) e retorna endereço*/
 Matriz *create(const int lin, const int col);

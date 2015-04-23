@@ -1,4 +1,4 @@
-/*Implementação com vetores simples*/
+/*Implementação com vetores de ponteiros*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -48,4 +48,24 @@ int return_lines(Matriz *matriz){
 
 int return_columns(Matriz *matriz){
 	return matriz->col;
+};
+
+/*FUNÇÕES DE TESTE DA MATRIZ*/
+
+void fills_matriz(Matriz *matriz, float value){
+	int i, j;
+
+	for(i =0; i <(matriz->lin); i++)
+		for(j =0; j <(matriz->col); j++)
+			assign(matriz, i, j, value++);
+};
+
+void print_matriz(Matriz *matriz){
+	int i, j;
+
+	for(i =0; i <(matriz->lin); i++){
+		for(j =0; j <(matriz->col); j++)
+			printf("%5.1f ", acess(matriz, i, j));
+		printf("\n");
+	};
 };
