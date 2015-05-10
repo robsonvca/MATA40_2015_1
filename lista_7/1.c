@@ -109,8 +109,28 @@ int igual(Lista *l1, Lista *l2){
 	};
 	return 1;
 };
+
+
+//3.­ Implemente uma função que crie uma cópia de uma lista encadeada.
+Lista* copia(Lista* lista_enc){
+	Lista *temp1, *temp2, *nova_lista;
+	nova_lista = inicializa();
+	temp2 = inicializa();
+	temp1 = lista_enc;
+	
+	if(!lista_vazia(lista_enc)){
+		for (temp1 = lista_enc; temp1 !=NULL; temp1 = temp1->prox)
+			temp2 = insere(temp2, temp1->info);
+			
+		for (temp1 = temp2; temp1 !=NULL; temp1 = temp1->prox) //Sério?! Isso mesmo?! Affs.
+			nova_lista = insere(nova_lista, temp1->info);
+		free(temp2);
+	};
+	return nova_lista;
+};
+
  
-//Testa questões
+//TESTA QUESTÕES
 void testa_q1(){
 	Lista *lista_enc;
 	
@@ -160,9 +180,31 @@ void testa_q2(){
 	libera(lista_enc2);
 };
 
+void testa_q3(){
+	Lista *lista_enc;
+	
+	//Inicializa
+	lista_enc = inicializa();
+	
+	//Insere
+	lista_enc = insere(lista_enc, 10);
+	lista_enc = insere(lista_enc, 20);
+	lista_enc = insere(lista_enc, 10);
+	lista_enc = insere(lista_enc, 20);
+	percorre(lista_enc);
+	
+	//Copia
+	lista_enc = copia(lista_enc);
+	percorre(lista_enc);
+	
+	//Libera
+	libera(lista_enc);
+};
+
 int main(void){
 //	testa_q1();
-	testa_q2();
+//	testa_q2();
+	testa_q3();
 	
 	return 0;	
 };
