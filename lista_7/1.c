@@ -89,7 +89,6 @@ void libera(Lista *lista_enc){
 		free(temp1);	
 		temp1 = temp2;
 	};
-	free(lista_enc);
 };
 
 
@@ -129,58 +128,46 @@ Lista* copia(Lista* lista_enc){
 	return nova_lista;
 };
 
+//Questão 4 a.
+void torna_circular(Lista *lista_enc){
+	if(!lista_vazia(lista_enc)){
+		Lista *temp;
+		temp = lista_enc;
+		
+		for (temp = lista_enc; temp->prox != NULL; temp = temp->prox);
+		
+		temp->prox = lista_enc;
+	};
+};
+
+//Questão 4 b.
+void torna_linear(Lista *lista_enc){
+	if(!lista_vazia(lista_enc)){	
+		Lista *temp;
+		temp = lista_enc;
+	
+		for (temp = lista_enc; temp->prox != lista_enc; temp = temp->prox);		
+		temp->prox = NULL;
+	};
+};
+
+//Questão 4 c.
+int tamanho_circular(Lista *lista_enc){
+	int cont =0;
+	if(!lista_vazia(lista_enc)){	
+		Lista *temp;
+		temp = lista_enc;
+	
+		for (temp = lista_enc; temp->prox != lista_enc; temp = temp->prox)
+			cont++;
+		cont++;
+	};
+	return cont;
+};
  
 //TESTA QUESTÕES
-void testa_q1(){
-	Lista *lista_enc;
-	
-	//Inicializa
-	lista_enc = inicializa();
-	//Insere
-	lista_enc = insere(lista_enc, 10);
-	lista_enc = insere(lista_enc, 20);
-	lista_enc = insere(lista_enc, 30);
-	lista_enc = insere(lista_enc, 40);
-	percorre(lista_enc);
-	//Busca
-	printf("Busca 20: pos %p\n", busca(lista_enc, 20));
-	printf("Busca 21: pos %p\n", busca(lista_enc, 21));
-	//Retira
-	lista_enc = retira(lista_enc, 20);
-	lista_enc = retira(lista_enc, 30);
-	lista_enc = retira(lista_enc, 40);
-	percorre(lista_enc);
-	//Libera
-	libera(lista_enc);
-};
 
-void testa_q2(){
-	Lista *lista_enc1, *lista_enc2;
-	
-	//Inicializa
-	lista_enc1 = inicializa();
-	lista_enc2 = inicializa();
-	
-	//Insere
-	lista_enc1 = insere(lista_enc1, 10);
-	lista_enc1 = insere(lista_enc1, 20);
-	lista_enc2 = insere(lista_enc2, 10);
-	lista_enc2 = insere(lista_enc2, 20);
-	percorre(lista_enc1);
-	percorre(lista_enc2);
-	
-	//vefifica se são iguais
-	if(igual(lista_enc1, lista_enc2))
-		printf("LISTAS IGUAIS\n");
-	else
-		printf("LISTAS DIFERENTES\n");
-	
-	//Libera
-	libera(lista_enc1);
-	libera(lista_enc2);
-};
-
-void testa_q3(){
+void testa(){
 	Lista *lista_enc;
 	
 	//Inicializa
@@ -189,22 +176,24 @@ void testa_q3(){
 	//Insere
 	lista_enc = insere(lista_enc, 10);
 	lista_enc = insere(lista_enc, 20);
-	lista_enc = insere(lista_enc, 10);
-	lista_enc = insere(lista_enc, 20);
+//	lista_enc = insere(lista_enc, 10);
+//	lista_enc = insere(lista_enc, 20);
 	percorre(lista_enc);
 	
 	//Copia
+	printf("Copia ");
 	lista_enc = copia(lista_enc);
 	percorre(lista_enc);
 	
+	torna_circular(lista_enc);
+	printf("Circular= %i\n", tamanho_circular(lista_enc));
+	torna_linear(lista_enc);
 	//Libera
-	libera(lista_enc);
+	libera(lista_enc); //Nâo funciona com lista circular
 };
 
 int main(void){
-//	testa_q1();
-//	testa_q2();
-	testa_q3();
+	testa();
 	
 	return 0;	
 };
