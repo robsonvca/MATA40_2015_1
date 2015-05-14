@@ -46,12 +46,11 @@ void percorre(Lista *lista_enc){
 Lista *busca(Lista *lista_enc, int info){
 	if(!lista_vazia(lista_enc)){	
 		Lista *temp;
-		temp = lista_enc;
-	
-		for (temp = lista_enc; temp !=NULL; temp = temp->prox){
+		
+		for(temp = lista_enc; temp !=NULL && temp->info != info; temp = temp->ant);
+		if(temp != NULL)
 			if(temp->info == info)
 				return temp;
-		};
 	};
 	return NULL;
 };
@@ -59,19 +58,19 @@ Lista *busca(Lista *lista_enc, int info){
 //1.f­ Função que retira um elemento da lista.
 Lista *retira(Lista *lista_enc, int info){
 	if(!lista_vazia(lista_enc)){
-		Lista *temp, *before =NULL;
+		Lista *temp, *ante =NULL;
 		temp = lista_enc;
 		
 		while((temp != NULL) && (temp->info != info)){
-			before = temp;
+			ante = temp;
 			temp = temp->prox;
 		};
 		if(temp == NULL)
 			return lista_enc;
-		else if(before == NULL)
+		else if(ante == NULL)
 			lista_enc = temp->prox; 
 		else
-			before->prox = temp->prox;
+			ante->prox = temp->prox;
 		
 		free(temp);
 		return lista_enc;
