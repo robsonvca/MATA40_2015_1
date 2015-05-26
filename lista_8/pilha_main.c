@@ -6,13 +6,9 @@ int main(void){
 	pilha_dados = cria();
 	
 	push(pilha_dados, 10);
-	push(pilha_dados, 20);
-	push(pilha_dados, 30);
 	
-	printf("Retirou: %.2f\n", pop(pilha_dados));
-	
-	printf("Vazia? %i\n", vazia(pilha_dados));
-	
+	imprime(pilha_dados);
+
 	libera (pilha_dados);
 	
 	return 0;

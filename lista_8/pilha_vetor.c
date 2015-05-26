@@ -1,6 +1,7 @@
 //Implementação de pilha com vetor
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "pilha.h"
 
 #define MAX 50
@@ -37,4 +38,11 @@ int vazia(Pilha *p){
 
 void libera (Pilha *p){
 	free(p);
+};
+
+void imprime(Pilha *p){
+	int i;
+	printf("Pilha\n");
+	for(i =0; i <= p->n; i++)
+		printf("%.2f\n", p->vet[i]);
 };

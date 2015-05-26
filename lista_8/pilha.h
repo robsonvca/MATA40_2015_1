@@ -8,4 +8,6 @@ float pop(Pilha *p);
 
 int vazia(Pilha *p);
 
-void libera (Pilha *p);
+void libera(Pilha *p);
+
+void imprime(Pilha *p);
