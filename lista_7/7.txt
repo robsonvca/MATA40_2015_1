@@ -1,0 +1,2 @@
+Sim, TiraDoInicio() recebe e copia o primeiro elemento da lista que será retornado
+no final, desta forma é possível remover o nó inicial sem perder dados.

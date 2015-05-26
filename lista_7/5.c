@@ -29,7 +29,8 @@ Lista *busca(Lista *lista_enc, int info){
 	if(lista_enc != NULL){
 		Lista *temp;
 		
-		for(temp = lista_enc; temp !=NULL && temp->info != info; temp = temp->ant);
+		for(temp = lista_enc; temp !=NULL && temp->info != info && temp->ant != lista_enc; temp = temp->ant);
+		
 		if(temp != NULL)
 			if(temp->info == info)
 				return temp;
@@ -47,10 +48,10 @@ Lista *retira(Lista *lista_enc, int info){
 				lista_enc = temp->ant;
 			else
 				temp->prox->ant = temp->ant;
-
-			if(temp->ant != NULL)
-				temp->ant->prox = temp->prox;
 				
+			if(temp->ant != NULL && lista_enc->prox->prox == NULL)
+				temp->ant->prox = temp->prox;
+
 			free(temp);
 		};
 		return lista_enc;
@@ -61,30 +62,47 @@ Lista *retira(Lista *lista_enc, int info){
 void percorre(Lista *lista_enc){
 	if(lista_enc != NULL){
 		Lista *temp;
-		temp = lista_enc;
-		
+		int cont =0;
 		printf("Lista: ");	
-		while(temp != NULL){
-			printf("%i ", temp->info);
-			temp = temp->ant;
-		};	
+		for(temp = lista_enc; temp !=NULL && temp->ant != lista_enc; temp = temp->ant){
+			printf("%i ", temp->info); cont++;} 
+		if(temp != NULL){
+			printf("%i ", temp->info); cont++;}
+			printf("\t\tcont: %i", cont);
 	};
 	printf("\n");
 };
+
+//Questão 6
+void torna_circular(Lista *lista_enc){
+	if(lista_enc != NULL){
+		Lista *temp;
+		
+		for(temp = lista_enc; temp->ant != NULL; temp = temp->ant);
+		
+		temp->ant = lista_enc;
+		temp->ant->prox = temp; //vulgo 'lista_enc->prox;
+	};
+};
+
+//Questão 6
+void torna_linear(Lista *lista_enc){
+	if(lista_enc != NULL){
+		lista_enc->prox->ant = NULL;
+		lista_enc->prox = NULL;
+	};
+};
+
 
 int main(void){
 	Lista *lista_enc;
 	lista_enc = inicializa();
 		
 	lista_enc = insere(lista_enc, 10);lista_enc = insere(lista_enc, 20);lista_enc = insere(lista_enc, 30);lista_enc = insere(lista_enc, 40);
-	lista_enc = insere(lista_enc, 50);lista_enc = insere(lista_enc, 60);lista_enc = insere(lista_enc, 70);lista_enc = insere(lista_enc, 80);
 	percorre(lista_enc);
 	
-	busca(lista_enc, 50);
-	
-	lista_enc = retira(lista_enc, 10);
-	lista_enc = retira(lista_enc, 60);
-	lista_enc = retira(lista_enc, 80);
+	torna_circular(lista_enc);
+	printf("Retira: %p\n", retira(lista_enc, 10));
 	percorre(lista_enc);
 	
 	
