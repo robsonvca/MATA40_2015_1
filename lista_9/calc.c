@@ -12,7 +12,7 @@ struct pilha{
 };
 
 struct calc{
-	char f[21];
+	int f;
 	struct pilha *p;
 };
 
@@ -44,18 +44,18 @@ void libera_pilha(Pilha *p){
 	free(p);
 };
 
-Calc *cria_calc(char *f){
+Calc *cria_calc(int f){
 	Calc *temp = (Calc *) malloc(sizeof(Calc));
 	if(temp){
 		temp->p = cria_pilha();
-		strcpy(temp->f, f);
+		temp->f = f;
 	};
 	return temp;
 };
 
 void operando(Calc *c, float v){
 	push(c->p, v);
-	printf("operando: %f\n", v);
+	printf("operando: %.*f\n", c->f, v);
 };
 
 void operador(Calc *c, char op){
@@ -78,7 +78,7 @@ void operador(Calc *c, char op){
 			res = val1 / val2;
 	};
 	push(c->p, res);
-	printf("(%f %c %f) = %f\n", val1, op, val2, res);
+	printf("(%.*f %c %.*f) = %.*f\n", c->f, val1, op, c->f, val2, c->f, res);
 };
 
 void libera_calc(Calc *c){
